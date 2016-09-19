@@ -1,0 +1,6 @@
+{
+  "generator-sp": {
+    "capprojectname": "snp-test-task-1",
+    "webpack": true
+  }
+}
