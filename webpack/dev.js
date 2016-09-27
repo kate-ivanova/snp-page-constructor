@@ -5,12 +5,12 @@ const path = require('path');
 const makeConfig = require('./_config');
 
 const ALLOWED_MODES = {
-  DEBUG: true,
-  DIST: true,
-  PROD: true,
+  debug: true,
+  dist: true,
+  prod: true,
 };
 
-const BUILD_MODE = process.env.MODE || 'DEBUG';
+const BUILD_MODE = process.env.MODE || 'debug';
 
 if (!ALLOWED_MODES[BUILD_MODE]) {
   console.log(`Build mode has wrong value. MODE=${BUILD_MODE}`);
@@ -38,11 +38,14 @@ module.exports = opts => {
   config.devtool = 'eval';
   config.debug = true;
   config.output.publicPath = 'http://localhost:9000/';
-  config.entry.app.unshift('webpack-dev-server/client?http://localhost:9000', 'webpack/hot/dev-server');
+  config.entry.app.unshift(
+    'webpack-dev-server/client?http://localhost:9000',
+    'webpack/hot/only-dev-server'
+  );
   config.watchOptions = {timeout: 100};
-  config.plugins.push(new webpack.HotModuleReplacementPlugin());
   if (!opts.test) {
     config.plugins.push(new ModernizrWebpackPlugin(require('./_modernizr')));
   }
+  config.plugins.unshift(new webpack.HotModuleReplacementPlugin());
   return config;
 };

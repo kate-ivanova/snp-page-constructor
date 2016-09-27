@@ -8,6 +8,7 @@ app/bower_components
 /app/*.html
 /arhive
 /app/images/vendor/
+npm-debug.log
 
 /app/styles/vendor/*
 !/app/styles/vendor/_bootstrap.scss

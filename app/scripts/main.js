@@ -1,3 +1,4 @@
-import App from './app';
-common.app = new App(common);
-common.app.start();
+import Application from './app';
+
+const app = new Application();
+app.start();

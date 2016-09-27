@@ -4,9 +4,9 @@ const rimraf = require('rimraf');
 const path = require('path');
 
 const ALLOWED_MODES = {
-  DEBUG: false,
-  DIST: true,
-  PROD: true,
+  debug: false,
+  dist: true,
+  prod: true,
 };
 
 const BUILD_MODE = process.env.MODE;
@@ -24,7 +24,6 @@ function build() {
   });
   webpackConfig.output = {
     path: buildPath,
-    publicPath: '../',
     filename: 'frassets/[name].bundle.[chunkhash].js',
     chunkFilename: 'frassets/[id].bundle.[chunkhash].js',
   };

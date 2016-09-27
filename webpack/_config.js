@@ -7,17 +7,20 @@ const doConfig = opts => {
   if (opts === null) {
     opts = {};
   }
-  const BUILD_MODE = opts.BUILD_MODE;
   const IS_DEV = Boolean(opts.IS_DEV);
   return {
     context: path.resolve('app'),
     entry: {
-      app: ['babel-polyfill', './scripts/main.js'],
+      app: [
+        'babel-polyfill',
+        './scripts/main.js',
+      ],
     },
     resolve: {
       extensions: [
         '',
         '.js',
+        '.jsx',
         '.coffee',
       ],
       modulesDirectoriess: ['node_modules'],
@@ -38,13 +41,14 @@ const doConfig = opts => {
       ],
       loaders: [
         {
+          test: /\.md$/,
+          loader: 'markdown-with-front-matter',
+        },
+        {
           test: /\.jsx?$/,
           exclude: /(node_modules|bower_components)/,
-          loader: 'babel',
-          query: {
-            presets: ['react', 'es2015', 'stage-0'],
-            plugins: ['add-module-exports'],
-          },
+          include: path.join(__dirname, '../app'),
+          loaders: ['react-hot', 'babel'],
         },
         {
           test: /\.coffee$/,
@@ -60,7 +64,7 @@ const doConfig = opts => {
         },
         {
           test: /\.css$/,
-          loader: ExtractTextPlugin.extract('style', 'css!postcss'),
+          loader: ExtractTextPlugin.extract('style', 'css?modules&&localIdentName=[local]__[hash:base64:5]!postcss'),
         },
         {
           test: /\.(png|jpe?g|ico)$/,
@@ -94,12 +98,11 @@ const doConfig = opts => {
       ],
       noParse: [
         /jquery\/dist\/jquery\.js/,
-        /^backbone\/backbone\.js/,
       ],
     },
     postcss: require('./_postcss'),
     plugins: [
-      new (webpack.DefinePlugin)({BUILD_MODE: JSON.stringify(BUILD_MODE)}),
+      new (webpack.DefinePlugin)({'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)}),
       new (webpack.ContextReplacementPlugin)(/node_modules\/moment\//, /ru/),
       new (webpack.ProvidePlugin)({
         $: 'jquery',
@@ -107,21 +110,10 @@ const doConfig = opts => {
         /* eslint quote-props: "off" */
         'window.jQuery': 'jquery',
         'window.$': 'jquery',
-        _: 'underscore',
       }),
       new (HtmlWebpackPlugin)({
         filename: 'index.html',
-        template: 'html/index.jade',
-      }),
-      new (HtmlWebpackPlugin)({
-        filename: 'auth_fail.html',
-        template: 'html/auth_fail.jade',
-        inject: false,
-      }),
-      new (HtmlWebpackPlugin)({
-        filename: 'auth_success.html',
-        template: 'html/auth_success.jade',
-        inject: false,
+        template: 'index.jade',
       }),
       new ExtractTextPlugin('frassets/app.[contenthash].css', {
         allChunks: true,
