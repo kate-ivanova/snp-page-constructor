@@ -41,10 +41,6 @@ const doConfig = opts => {
       ],
       loaders: [
         {
-          test: /\.md$/,
-          loader: 'markdown-with-front-matter',
-        },
-        {
           test: /\.jsx?$/,
           exclude: /(node_modules|bower_components)/,
           include: path.join(__dirname, '../app'),
