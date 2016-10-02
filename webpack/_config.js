@@ -16,6 +16,12 @@ const doConfig = opts => {
         './scripts/main.js',
       ],
     },
+    externals: {
+      'jsdom': 'window',
+      'cheerio': 'window',
+      'react/lib/ExecutionEnvironment': true,
+      'react/lib/ReactContext': 'window',
+    },
     resolve: {
       extensions: [
         '',
@@ -53,6 +59,10 @@ const doConfig = opts => {
         {
           test: /\.jade$/,
           loader: 'jade',
+        },
+        {
+          test: /\.json$/,
+          loader: 'json-loader',
         },
         {
           test: /\.sass$/,
@@ -94,6 +104,7 @@ const doConfig = opts => {
       ],
       noParse: [
         /jquery\/dist\/jquery\.js/,
+        /node_modules\/sinon\//,
       ],
     },
     postcss: require('./_postcss'),

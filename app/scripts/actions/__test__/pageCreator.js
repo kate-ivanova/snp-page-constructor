@@ -1,7 +1,7 @@
-import actionTypes from '../actionTypes';
-import * as actionCreators from '../page';
+import actionTypes from 'actions/actionTypes';
+import * as actionCreators from 'actions/pageCreator';
 
-describe('title action creators', () => {
+describe('pageCreator action creators', () => {
   it('create setTitle action', () => {
     const title = 'Title';
     const action = actionCreators.setTitle(title);
@@ -44,6 +44,33 @@ describe('title action creators', () => {
     const expectedAction = {
       type: actionTypes.ADD_LIST,
       list,
+    };
+    expect(action).to.be.eql(expectedAction);
+  });
+  it('create addAuthorName action', () => {
+    const name = 'Author name';
+    const action = actionCreators.addAuthorName(name);
+    const expectedAction = {
+      type: actionTypes.ADD_AUTHOR_NAME,
+      name,
+    };
+    expect(action).to.be.eql(expectedAction);
+  });
+  it('create addAuthorEmail action', () => {
+    const email = 'Author email';
+    const action = actionCreators.addAuthorEmail(email);
+    const expectedAction = {
+      type: actionTypes.ADD_AUTHOR_EMAIL,
+      email,
+    };
+    expect(action).to.be.eql(expectedAction);
+  });
+  it('create addAuthorPhone action', () => {
+    const phone = 'Author phone';
+    const action = actionCreators.addAuthorPhone(phone);
+    const expectedAction = {
+      type: actionTypes.ADD_AUTHOR_PHONE,
+      phone,
     };
     expect(action).to.be.eql(expectedAction);
   });

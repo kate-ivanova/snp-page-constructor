@@ -18,4 +18,5 @@ module.exports = {
   'selectors': path.join(__dirname, '../app/scripts/selectors'),
   'bootstrap': path.join(__dirname, '../node_modules/bootstrap/dist/js/bootstrap'),
   'simple-blocks': 'simple-blocks/dist/simpleblocks',
+  'sinon': 'sinon/pkg/sinon',
 };

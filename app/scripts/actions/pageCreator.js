@@ -30,3 +30,21 @@ export const addList = list => {
     list,
   };
 };
+export const addAuthorName = name => {
+  return {
+    type: actionTypes.ADD_AUTHOR_NAME,
+    name,
+  };
+};
+export const addAuthorEmail = email => {
+  return {
+    type: actionTypes.ADD_AUTHOR_EMAIL,
+    email,
+  };
+};
+export const addAuthorPhone = phone => {
+  return {
+    type: actionTypes.ADD_AUTHOR_PHONE,
+    phone,
+  };
+};

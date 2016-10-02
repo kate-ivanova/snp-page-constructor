@@ -5,6 +5,9 @@ const actionTypes = {
   ADD_TEXT: 'ADD_TEXT',
   ADD_IMAGE: 'ADD_IMAGE',
   ADD_LIST: 'ADD_LIST',
+  ADD_AUTHOR_NAME: 'ADD_AUTHOR_NAME',
+  ADD_AUTHOR_EMAIL: 'ADD_AUTHOR_EMAIL',
+  ADD_AUTHOR_PHONE: 'ADD_AUTHOR_PHONE',
 };
 
 export default actionTypes;
