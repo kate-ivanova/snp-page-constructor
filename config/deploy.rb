@@ -3,7 +3,7 @@ require 'capistrano/ext/multistage'
 set :stages, %w(testing production)
 set :default_stage, 'testing'
 
-set :application, "snp-test-task-1"
+set :application, "snp-page-constructor"
 
 set :deploy_to, "/var/www/#{application}/cs"
 set :use_sudo, false
