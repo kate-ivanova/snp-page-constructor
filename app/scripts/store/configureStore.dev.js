@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: "off" */
 import {createStore} from 'redux';
-import rootReducer from 'reducers';
+import rootReducer from 'reducers/rootReducer';
 import enhancer from './storeEnhancer';
 
 // ------------------ configureStore ------------------
@@ -12,8 +12,8 @@ export default function configureStore(initialState) {
   );
   // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
   if (module.hot) {
-    module.hot.accept('reducers', () =>
-      store.replaceReducer(require('reducers').default)
+    module.hot.accept('reducers/rootReducer', () =>
+      store.replaceReducer(require('reducers/rootReducer').default)
     );
   }
   return store;

@@ -7,8 +7,8 @@ class PageCreatorContainer extends Component {
     return <PageCreator {...this.props} />;
   }
 }
-const mapStateToProps = (state) => ({
-  ...state
+const mapStateToProps = state => ({
+  ...state,
 });
 
 export default connect(

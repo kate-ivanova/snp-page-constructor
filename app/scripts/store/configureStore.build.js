@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: "off" */
 import {createStore} from 'redux';
-import rootReducer from 'reducers';
+import rootReducer from 'reducers/rootReducer';
 import enhancer from './storeEnhancer';
 
 // ------------------ configureStore ------------------
